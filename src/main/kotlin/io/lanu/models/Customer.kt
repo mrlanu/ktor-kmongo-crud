@@ -14,3 +14,8 @@ data class CustomerRequest(
     val firstName: String,
     val lastName: String
 )
+
+data class LoginRequest(
+    val username: String,
+    val password: String
+)

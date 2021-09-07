@@ -45,8 +45,11 @@ GET http://127.0.0.1:8080/customers
 Accept: application/json
 
 ###
-GET http://127.0.0.1:8080/customers/13dd8d49-c423-4e1c-abe5-6be1787d4022
+GET http://127.0.0.1:8080/customers/326615fc-7f1a-4597-9b65-c8a3fcab909a
 
+###
+GET http://127.0.0.1:8080/customers/326615fc-7f1a-4597-9b65-c8a3fcab909a
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL3NlY3JldC1yZXNvdXJjZXMiLCJpc3MiOiJodHRwOi8vMC4wLjAuMDo4MDgwLyIsImV4cCI6MTYzMDk4NDYxOSwidXNlcm5hbWUiOiJtcmt1a3UifQ.EA_5TZhSknw96_JOrkU9K5PlLVueFXI7K5ysEtuaMbQ
 ###
 GET http://127.0.0.1:8080/customers/500
 
@@ -55,3 +58,16 @@ DELETE http://127.0.0.1:8080/customers/13dd8d49-c423-4e1c-abe5-6be1787d4022
 
 ###
 DELETE http://127.0.0.1:8080/customers/500
+
+###
+POST http://127.0.0.1:8080/login
+Content-Type: application/json
+
+{
+  "username": "mrkuku",
+  "password": "mrlanu"
+}
+
+###
+GET http://127.0.0.1:8080/secret-resources
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwOi8vMC4wLjAuMDo4MDgwL3NlY3JldC1yZXNvdXJjZXMiLCJpc3MiOiJodHRwOi8vMC4wLjAuMDo4MDgwLyIsImV4cCI6MTYzMDk4MjI1NiwidXNlcm5hbWUiOiJtcmxhbnUifQ.vRuhyfaEhYVoDuJ7613oiAjm9hIWvSe10P-z0T5y468

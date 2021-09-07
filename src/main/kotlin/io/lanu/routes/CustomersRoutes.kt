@@ -1,6 +1,7 @@
 package io.lanu.routes
 
 import io.ktor.application.*
+import io.ktor.auth.*
 import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -23,16 +24,18 @@ fun Route.customersRouting() {
                 call.respondText("No customers have been found", status = HttpStatusCode.NotFound)
             }
         }
-        get("{id}") {
-            val id = call.parameters["id"] ?: return@get call.respondText(
-                "Missed id",
-                status = HttpStatusCode.BadRequest
-            )
-            val customer = service.findOneById(id) ?: return@get call.respondText(
+        authenticate("auth-jwt"){
+            get("{id}") {
+                val id = call.parameters["id"] ?: return@get call.respondText(
+                    "Missed id",
+                    status = HttpStatusCode.BadRequest
+                )
+                val customer = service.findOneById(id) ?: return@get call.respondText(
                     "No customer with id $id",
                     status = HttpStatusCode.NotFound
                 )
-            call.respond(customer)
+                call.respond(customer)
+            }
         }
         post {
             val request = call.receive<CustomerRequest>()
