@@ -15,8 +15,10 @@ import io.lanu.dao.ICustomersDao
 import io.lanu.models.JWTConfig
 import io.lanu.routes.registerAuthRoutes
 import io.lanu.routes.registerCustomerRoutes
+import io.lanu.services.AuthServiceImpl
 import io.lanu.services.ICustomersService
 import io.lanu.services.CustomersServiceImpl
+import io.lanu.services.IAuthService
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.koin.ktor.ext.inject
@@ -34,6 +36,7 @@ fun Application.module() {
             single { getMongoClient(environment) }
             single<ICustomersDao> { CustomersDaoImpl(get()) }
             single<ICustomersService> { CustomersServiceImpl(get()) }
+            single<IAuthService> { AuthServiceImpl(get()) }
             single { JWTConfig(environment) }
         })
     }

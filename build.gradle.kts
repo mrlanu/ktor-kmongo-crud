@@ -25,6 +25,7 @@ dependencies {
     implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("io.ktor:ktor-auth:$ktor_version")
     implementation("io.ktor:ktor-auth-jwt:$ktor_version")
+    implementation("org.mindrot:jbcrypt:0.4")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("org.litote.kmongo:kmongo-coroutine:4.2.8")
     // Koin for Ktor

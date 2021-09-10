@@ -3,11 +3,13 @@ package io.lanu.dao
 import com.mongodb.client.result.DeleteResult
 import io.ktor.application.*
 import io.lanu.models.Customer
+import io.lanu.models.LoginRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import org.litote.kmongo.coroutine.CoroutineClient
 import org.litote.kmongo.coroutine.CoroutineCollection
+import org.litote.kmongo.eq
 
 const val dbName = "travian"
 
@@ -34,5 +36,14 @@ class CustomersDaoImpl(private val mongoClient: CoroutineClient) : ICustomersDao
 
     override suspend fun removeById(id: String): DeleteResult = getCollection().deleteOneById(id)
 
+    override suspend fun registerUser(username: String, hashedPass: String) {
+        mongoClient.getDatabase(dbName).getCollection<User>().insertOne(User(username, hashedPass))
+    }
+
+    override suspend fun findUserByUsername(userRequest: LoginRequest): User? =
+        mongoClient.getDatabase(dbName).getCollection<User>().findOne(User::username eq userRequest.username)
+
     private fun getCollection() : CoroutineCollection<Customer> = mongoClient.getDatabase(dbName).getCollection()
 }
+
+data class User(val username: String, val pass: String)

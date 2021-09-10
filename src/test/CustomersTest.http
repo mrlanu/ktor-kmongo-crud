@@ -64,7 +64,16 @@ POST http://127.0.0.1:8080/login
 Content-Type: application/json
 
 {
-  "username": "mrkuku",
+  "username": "mrlanu",
+  "password": "mrlanu"
+}
+
+###
+POST http://127.0.0.1:8080/register
+Content-Type: application/json
+
+{
+  "username": "mrlanu",
   "password": "mrlanu"
 }
 
